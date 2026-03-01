@@ -93,6 +93,7 @@
 
         .tag-built { background: #ef4444; color: #fff; }
         .tag-enterprise { background: #3b82f6; color: #fff; }
+        .tag-automation { background: #10b981; color: #fff; }
 
         .case-header h2 {
             font-size: 1.8rem;
@@ -168,6 +169,7 @@
         }
 
         .stat-card.blue .number { color: #3b82f6; }
+        .stat-card.green .number { color: #10b981; }
 
         .stat-card .label {
             font-size: 0.85rem;
@@ -246,6 +248,12 @@
         }
 
         .feature-list.blue .bullet { color: #3b82f6; }
+        .feature-list.green .bullet { color: #10b981; }
+
+        .highlight-green {
+            color: #34d399;
+            font-weight: 600;
+        }
 
         /* ── Architecture Diagram ──────────────────────────── */
         .arch-diagram {
@@ -321,6 +329,11 @@
             border-color: #1e3a5f;
         }
 
+        .takeaway-box.green {
+            background: linear-gradient(135deg, #1a1d2e, #0f2e1a);
+            border-color: #1e5f3a;
+        }
+
         .takeaway-box p {
             color: #d0d0e0;
             font-size: 1.05rem;
@@ -358,12 +371,13 @@
     <div class="hero">
         <div class="container">
             <h1>Michael Schapiro</h1>
-            <p class="subtitle">AI adoption, product strategy, and hands-on builds — two case studies in using AI to drive real outcomes</p>
+            <p class="subtitle">AI adoption, product strategy, and hands-on builds — three case studies in using AI to drive real outcomes</p>
         </div>
     </div>
 
     <div class="case-nav">
         <button class="active" onclick="showCase('copilot')">Enterprise AI Agent</button>
+        <button onclick="showCase('automate')">Automated Briefings</button>
         <button onclick="showCase('madness')">March Madness App</button>
     </div>
 
@@ -469,7 +483,117 @@
     </div>
 
     <!-- ════════════════════════════════════════════════════════════════════ -->
-    <!-- CASE STUDY 2: MARCH MADNESS APP                                     -->
+    <!-- CASE STUDY 2: POWER AUTOMATE EXECUTIVE BRIEFINGS                    -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <div id="case-automate" class="case-study">
+        <div class="container">
+
+            <div class="case-header">
+                <div class="tag tag-automation">WORKFLOW AUTOMATION</div>
+                <h2>Automated Executive Briefings with Power Automate & Copilot</h2>
+                <p class="case-subtitle">How I built an automated pipeline that pulled from multiple data sources and delivered consistent, AI-enhanced briefing decks before every account meeting</p>
+            </div>
+
+            <section>
+                <h3><span class="icon">&#x1f3af;</span> The Problem</h3>
+                <p>A senior stakeholder needed up-to-date briefing decks before every major account meeting. Each briefing required pulling from <span class="highlight-green">multiple disconnected sources</span> — public financial data, recent press coverage, internal relationship history, and pipeline activity.</p>
+                <p>Preparing these manually meant hours of research, copy-pasting between systems, and inconsistent formatting. The information was always available — it just wasn't assembled. And every briefing had to look and feel the same, regardless of who prepared it or which account it was for.</p>
+            </section>
+
+            <section>
+                <h3><span class="icon">&#x1f6e0;</span> The Solution</h3>
+                <p>I designed a <span class="highlight-green">human-in-the-loop workflow</span> that paired a manual Copilot research step with a fully automated Power Automate pipeline. Copilot handled the research — the flow handled everything else.</p>
+
+                <ul class="feature-list green">
+                    <li><span class="bullet">&#x25b6;</span> <span><strong>Copilot Research (Manual Step)</strong> — ran a saved M365 Copilot prompt to research the latest earnings reports, press releases, and publicly available company information for each account. Copilot output was reviewed and saved to a standardized Excel template with consistent columns and cell references.</span></li>
+                    <li><span class="bullet">&#x25b6;</span> <span><strong>Structured Excel Input</strong> — the Excel workbook used structured tables with fixed column headers (e.g., Company Overview, Key Financials, Recent News) so Power Automate could reliably read each cell by name — no parsing, no ambiguity.</span></li>
+                    <li><span class="bullet">&#x25b6;</span> <span><strong>SharePoint Data via OData Filters</strong> — the flow used SharePoint's "Get items" action with OData <code>$filter</code> queries (e.g., <code>Account eq 'Contoso' and Date ge '2024-01-01'</code>) to pull engagement history and relationship data scoped to the specific account and time range.</span></li>
+                    <li><span class="bullet">&#x25b6;</span> <span><strong>Pipeline Integration</strong> — pulled current pipeline and opportunity data to give the stakeholder a real-time view of what was in motion with each account heading into the meeting.</span></li>
+                    <li><span class="bullet">&#x25b6;</span> <span><strong>Templated PowerPoint Output</strong> — Power Automate populated a PowerPoint template using the Populate a Word Template connector and Office Scripts, mapping Excel cells and SharePoint fields to specific slide placeholders for a consistent, executive-ready deck every time.</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h3><span class="icon">&#x1f4d0;</span> Architecture</h3>
+                <div class="arch-diagram">
+                    <div class="arch-flow">
+                        <div class="arch-node">
+                            <div class="node-icon">&#x1f310;</div>
+                            <div class="node-title">M365 Copilot</div>
+                            <div class="node-detail">Manual research step — earnings, press, public intel</div>
+                        </div>
+                        <div class="arch-arrow">&#x2192;</div>
+                        <div class="arch-node">
+                            <div class="node-icon">&#x1f4ca;</div>
+                            <div class="node-title">Excel Template</div>
+                            <div class="node-detail">Structured tables with fixed columns and cell refs</div>
+                        </div>
+                        <div class="arch-arrow">&#x2192;</div>
+                        <div class="arch-node">
+                            <div class="node-icon">&#x1f4c2;</div>
+                            <div class="node-title">SharePoint</div>
+                            <div class="node-detail">Excel upload + engagement data via OData filters</div>
+                        </div>
+                        <div class="arch-arrow">&#x2192;</div>
+                        <div class="arch-node primary" style="border-color: #10b981; background: linear-gradient(135deg, #1a3f2e, #1a2d2a);">
+                            <div class="node-icon">&#x26a1;</div>
+                            <div class="node-title">Power Automate</div>
+                            <div class="node-detail">Reads Excel, queries SharePoint, assembles briefing</div>
+                        </div>
+                        <div class="arch-arrow">&#x2192;</div>
+                        <div class="arch-node">
+                            <div class="node-icon">&#x1f4dd;</div>
+                            <div class="node-title">PowerPoint Briefing</div>
+                            <div class="node-detail">Template populated via Office Scripts</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3><span class="icon">&#x1f4ca;</span> Results</h3>
+                <div class="stats-grid">
+                    <div class="stat-card green">
+                        <div class="number">Hours</div>
+                        <div class="label">Saved Per Briefing</div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="number">4+</div>
+                        <div class="label">Data Sources Unified</div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="number">100%</div>
+                        <div class="label">Consistent Format</div>
+                    </div>
+                </div>
+                <p>What used to be a manual, multi-hour research and formatting exercise became a one-click workflow. The stakeholder walked into every meeting with current, comprehensive, and consistently formatted intelligence — and the team that used to prepare these manually was freed up for higher-value work.</p>
+            </section>
+
+            <section>
+                <h3><span class="icon">&#x2699;</span> Tools Used</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">Power Automate</span>
+                    <span class="tech-tag">M365 Copilot</span>
+                    <span class="tech-tag">SharePoint</span>
+                    <span class="tech-tag">Excel</span>
+                    <span class="tech-tag">OData Queries</span>
+                    <span class="tech-tag">PowerPoint</span>
+                    <span class="tech-tag">Office Scripts</span>
+                </div>
+            </section>
+
+            <section>
+                <h3><span class="icon">&#x1f4a1;</span> The Takeaway</h3>
+                <div class="takeaway-box green">
+                    <p>Not everything needs to be fully automated to be effective. This workflow succeeds because it <span class="highlight-green">puts human judgment where it matters — the research — and automates everything after</span>. Copilot handles the open-ended intelligence gathering that requires a human eye, then a structured Excel handoff makes the rest of the pipeline reliable and repeatable. The best enterprise automations are hybrids: human-in-the-loop where quality matters, lights-out where consistency matters.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- CASE STUDY 3: MARCH MADNESS APP                                     -->
     <!-- ════════════════════════════════════════════════════════════════════ -->
     <div id="case-madness" class="case-study">
         <div class="container">
