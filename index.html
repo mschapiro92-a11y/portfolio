@@ -376,9 +376,9 @@
     </div>
 
     <div class="case-nav">
-        <button class="active" onclick="showCase('copilot')">Enterprise AI Agent</button>
-        <button onclick="showCase('automate')">Automated Briefings</button>
-        <button onclick="showCase('madness')">March Madness App</button>
+        <button class="active" onclick="showCase('copilot', this)">Enterprise AI Agent</button>
+        <button onclick="showCase('automate', this)">Automated Briefings</button>
+        <button onclick="showCase('madness', this)">March Madness App</button>
     </div>
 
     <!-- ════════════════════════════════════════════════════════════════════ -->
@@ -692,11 +692,11 @@
     </div>
 
     <script>
-        function showCase(id) {
+        function showCase(id, btn) {
             document.querySelectorAll('.case-study').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.case-nav button').forEach(el => el.classList.remove('active'));
             document.getElementById('case-' + id).classList.add('active');
-            event.target.classList.add('active');
+            btn.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
