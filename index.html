@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Schapiro — AI Case Study</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f1117;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1d2e 0%, #0f1117 100%);
+            border-bottom: 1px solid #2a2d3e;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 24px;
+        }
+
+        .hero .tag {
+            display: inline-block;
+            background: #ef4444;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 48px 0;
+            border-bottom: 1px solid #1e2030;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 .icon {
+            font-size: 1.3rem;
+        }
+
+        p {
+            color: #b0b8c8;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .highlight {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .stat-card {
+            background: #1a1d2e;
+            border: 1px solid #2a2d3e;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .tech-tag {
+            background: #1e2030;
+            border: 1px solid #2a2d3e;
+            color: #e0e0e0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            gap: 32px;
+            margin: 24px 0;
+        }
+
+        .screenshot {
+            background: #1a1d2e;
+            border: 1px solid #2a2d3e;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        .screenshot .caption {
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            border-top: 1px solid #2a2d3e;
+        }
+
+        .caption strong {
+            color: #e0e0e0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #1e2030;
+            color: #b0b8c8;
+            font-size: 1rem;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list .bullet {
+            color: #ef4444;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .takeaway-box {
+            background: linear-gradient(135deg, #1a1d2e, #1e1028);
+            border: 1px solid #3b2d5e;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .takeaway-box p {
+            color: #d0d0e0;
+            font-size: 1.05rem;
+            margin-bottom: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            section { padding: 32px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="container">
+            <div class="tag">AI-BUILT PROJECT</div>
+            <h1 style="margin-top: 20px;">March Madness Pool</h1>
+            <p class="subtitle">A full-stack NCAA tournament pick-em app — designed, built, and shipped using AI as my development partner</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <section>
+            <h2><span class="icon">&#x1f3af;</span> The Problem</h2>
+            <p>I wanted to run a friends-and-family NCAA tournament pool for 100+ participants with custom scoring rules — daily pick-em with upset bonuses, Elite Eight predictions, and a real-time leaderboard. No existing platform supported the format I needed.</p>
+            <p>Rather than compromise on the rules, I decided to build the platform myself — with <span class="highlight">no prior Python or web development experience</span> — using AI tools as my development partner.</p>
+        </section>
+
+        <section>
+            <h2><span class="icon">&#x1f6e0;</span> What I Built</h2>
+            <ul class="feature-list">
+                <li><span class="bullet">&#x25b6;</span> <span><strong>User authentication</strong> — email/password sign-up, login, and password reset with Supabase Auth</span></li>
+                <li><span class="bullet">&#x25b6;</span> <span><strong>Daily pick submission</strong> — users pick winners for each game before tip-off, with automatic lockout once games start</span></li>
+                <li><span class="bullet">&#x25b6;</span> <span><strong>Elite Eight predictions</strong> — pre-tournament picks for which 8 teams will make the Elite Eight, earning bonus points</span></li>
+                <li><span class="bullet">&#x25b6;</span> <span><strong>Automated scoring</strong> — a cron job pulls results from ESPN's API every 30 minutes and scores all picks, including a custom upset bonus point system</span></li>
+                <li><span class="bullet">&#x25b6;</span> <span><strong>Smart defaults</strong> — auto-assigns the higher seed for any missed picks so no one falls behind</span></li>
+                <li><span class="bullet">&#x25b6;</span> <span><strong>Live leaderboard</strong> — real-time standings with round-by-round point breakdowns and search</span></li>
+                <li><span class="bullet">&#x25b6;</span> <span><strong>Multi-entry support</strong> — users can register multiple entries under one account, each scored independently</span></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="icon">&#x1f4f8;</span> The App</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot">
+                    <img src="images/image1.png" alt="Sign-up screen">
+                    <div class="caption"><strong>Sign Up</strong> — streamlined registration with entry name creation built into the sign-up flow</div>
+                </div>
+                <div class="screenshot">
+                    <img src="images/image2.png" alt="Pick submission screen">
+                    <div class="caption"><strong>Pick Submission</strong> — daily matchups with seed info and potential point values, including upset bonus previews</div>
+                </div>
+                <div class="screenshot">
+                    <img src="images/image3.png" alt="Leaderboard">
+                    <div class="caption"><strong>Live Leaderboard</strong> — real-time standings with round-by-round scoring breakdown and Elite Eight bonus tracking</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="icon">&#x2699;</span> Tech Stack</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Supabase (Postgres + Auth)</span>
+                <span class="tech-tag">ESPN API</span>
+                <span class="tech-tag">GitHub Actions</span>
+                <span class="tech-tag">Google Gemini</span>
+                <span class="tech-tag">Claude</span>
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="icon">&#x1f4ca;</span> Results</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">100+</div>
+                    <div class="label">Active Participants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">~2 Weeks</div>
+                    <div class="label">Idea to Production</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">0</div>
+                    <div class="label">Prior Dev Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">24/7</div>
+                    <div class="label">Automated Scoring</div>
+                </div>
+            </div>
+            <p>Ran a live beta with 10 testers over a weekend, caught and fixed scoring bugs in real-time, and deployed for the full tournament with zero manual intervention needed.</p>
+        </section>
+
+        <section>
+            <h2><span class="icon">&#x1f4a1;</span> The Takeaway</h2>
+            <div class="takeaway-box">
+                <p>This project is a proof point for what I help enterprise customers do every day: <span class="highlight">use AI to move from idea to working product, fast</span>. The same skills it takes to architect an AI adoption strategy for a Fortune 500 — scoping requirements, designing workflows, iterating through feedback, and shipping under pressure — are the same skills I used to build this from scratch. AI isn't just something I advise on. It's something I use to build.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="footer">
+        <p>Michael Schapiro &nbsp;|&nbsp; <a href="mailto:mschapiro92@gmail.com">mschapiro92@gmail.com</a> &nbsp;|&nbsp; <a href="https://linkedin.com/in/michael-schapiro">LinkedIn</a></p>
+    </div>
+
+</body>
+</html>
